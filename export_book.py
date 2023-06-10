@@ -12,12 +12,8 @@ HEADERS_PATH = "./headers"  # path where save temporary files with titles
 
 
 def create_dir_and_save_file(dir_path):
-    # Check if the directory already exists
     if os.path.exists(dir_path):
-        # If it exists, remove all files and subdirectories
         shutil.rmtree(dir_path)
-
-    # Create the directory
     os.mkdir(dir_path)
 
 
@@ -26,7 +22,6 @@ def create_headers(posts, tex_files):
         title = str(post["title"])
         title_data = f"\\section{{{title}}}"
 
-        # Write the file
         tex_file = f"{i}.tex"
         tex_file_path = os.path.join(HEADERS_PATH, tex_file)
         tex_files.append(tex_file_path)
@@ -38,7 +33,7 @@ def parse_files(lang_code=""):
     """
     @param lang_code In md can be ru|en etc. i.e. "en" in case file.en.md
     """
-    # Define regular expression to extract weight from header
+    # extract weights from header
     weight_re = re.compile(r"^weight:\s*(\d+)\s*$", re.MULTILINE)
     title_re = re.compile(r"^\s*title\s*:\s*(.*)$", re.MULTILINE)
 
@@ -204,6 +199,12 @@ def main():
         help="File extension. Default: md",
     )
     parser.add_argument(
+        "-l",
+        "--language",
+        default="",
+        help="Use language code if exists in md file name. (In case only use this language.) i.e. file: file.en.md -> --language en",
+    )
+    parser.add_argument(
         "-f",
         "--file-path",
         help="Are you using folders for chapters?",
@@ -213,6 +214,8 @@ def main():
         "--output-file",
         help="Path to result pdf. i.e. my-book.pdf",
     )
+
+    #TODO
     parser.add_argument("-b", "--book-title")
     parser.add_argument("-d", "--book-description")
 
