@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{import}
+\usepackage{etoc}
+\usepackage{eurosym}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{markdown}
+\usepackage{passthrough}
+\usepackage{tightlist}
+\usepackage{titletoc}
+\usepackage{xcolor}
+
+% table contents padding
+\usepackage{tocloft}
+\setlength{\cftbeforesecskip}{0pt}
+
+
+\usepackage[a4paper, total={6in, 8in}, top=2cm, bottom=2cm, left=1cm, right=1.5cm]{geometry}
+
+% Set up page style with page title
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+
+\setcounter{secnumdepth}{0}
+
+% fonts
+\setmainfont{M+ 1p}
+\setsansfont{M+ 1p}
+\setmonofont{M+ 1m}
+
+% remove border in the table of contents
+\hypersetup{linkbordercolor=0 0 0, urlbordercolor=0 0 0, pdfborderstyle={/S/U/W 0}}
+
+
+% highlight
+\lstdefinestyle{mystyle}{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numberstyle=\tiny\color{gray},
+    frame=tb,
+    showstringspaces=true,
+    inputencoding=utf8,
+    extendedchars=true,
+    showtabs=false,
+    tabsize=2,
+    literate={å}{{\aa}}1 {æ}{{\ae}}1 {ø}{{\o}}1 {Å}{{\AA}}1 {Æ}{{\AE}}1 {Ø}{{\O}}1,
+    numbers=left, 
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt
+}
+\lstset{style=mystyle}
+
+
+% \author{Roman Kurnovskii}
+\title{Хендбук Python}
+\newcommand{\headerright}{Python 3.10}
+\newcommand{\downloadlink}{https://romankurnovskii.com/handbooks/python-handbook.pdf}
+% \date{$if(lastmod)$$lastmod$$else$\today$endif$}
+
+\renewcommand*\contentsname{Содержание}
+
+% \rhead{\thepage} 
+\renewcommand{\headrulewidth}{0pt} % footer thickness
+\fancyhead[R]{\fontsize{8pt}{10pt}\selectfont\color{gray}\textit{\headerright}}
+\fancyfoot[C]{
+    \thepage\ / \pageref{LastPage}
+    \quad{\fontsize{8pt}{10pt}\selectfont\color{gray}\textit{версия: \today}}
+    \quad{\fontsize{8pt}{10pt}\selectfont\color{gray}
+                \textit{обновленная версия: 
+                \url{\downloadlink}}
+        }
+}
+
+\begin{document}
+
+    \begin{center}
+        \maketitle
+        \large $description$
+    \end{center}
+
+    \clearpage
+    $if(toc)$
+        \tableofcontents
+        \newpage
+    $endif$
+
+    \clearpage
+    $body$
+
+\end{document}
