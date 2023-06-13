@@ -215,7 +215,7 @@ def main():
         help="Path to result pdf. i.e. my-book.pdf",
     )
 
-    #TODO
+    # TODO
     parser.add_argument("-b", "--book-title")
     parser.add_argument("-d", "--book-description")
 
