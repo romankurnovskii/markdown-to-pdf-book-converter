@@ -13,6 +13,11 @@ Generate e-books, manuals, handbooks or other comprehensive documents from a col
 
 ## Usage
 
+```sh
+git clone https://github.com/romankurnovskii/markdown-to-pdf-book-converter.git
+cd markdown-to-pdf-book-converter
+```
+
 1. Build docker image:
 
 ```sh
@@ -23,7 +28,7 @@ docker build -t rk-latex-image .
 
 ```sh
 export HOST_TEMPLATE_PATH="$(pwd)" # path to template.tex
-export HOST_BOOK_PATH="./example-book-markdown"
+export HOST_BOOK_PATH="./example-book-markdown-folder"
 ```
 
 3. Update title, author, etc in template `template.tex` if needed
@@ -45,10 +50,16 @@ docker run -it \
 python3 -m export_book --using-chapter-folders --root-path book
 
 # set output pdf
-python3 -m export_book --using-chapter-folders --root-path book --output-file my-book.pdf
+python3 -m export_book --using-chapter-folders --root-path book --output-file book/my-book.pdf
 
 # create pdf from specific markdown files
-python3 -m export_book -c --root-path . -f ./book/top-questions/_index.ru.md
+python3 -m export_book --using-chapter-folders --root-path . -f ./book/top-questions/_index.ru.md
+
+# all markdown files in one folder
+python3 -m export_book --root-path book --output-file my-book.pdf
+
+# all markdown files in one folder AND one language (en)
+python3 -m export_book --root-path book --language en --output-file book/my-book.pdf
 ```
 
 Some other commands for creating .pdf

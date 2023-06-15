@@ -29,7 +29,7 @@ def create_headers(posts, tex_files):
             f.write(title_data)
 
 
-def parse_files(lang_code=""):
+def parse_files(md_book_path, lang_code=""):
     """
     @param lang_code In md can be ru|en etc. i.e. "en" in case file.en.md
     """
@@ -45,7 +45,7 @@ def parse_files(lang_code=""):
         lang_substr = f".{lang_code}"
 
     # Loop through all folders and files
-    for root, dirs, files in os.walk("."):
+    for root, dirs, files in os.walk(md_book_path):
         # Skip hidden folders
         if os.path.basename(root).startswith("."):
             continue
@@ -231,7 +231,9 @@ def main():
         args.root_path, args.file_type, args.using_chapter_folders, args.file_path
     )
 
-    sorted_posts, sorted_posts_paths = parse_files()
+    sorted_posts, sorted_posts_paths = parse_files(
+        args.root_path, lang_code=args.language
+    )
     file_list = sorted_posts_paths
 
     if not file_list:
