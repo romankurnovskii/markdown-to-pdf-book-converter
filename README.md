@@ -59,7 +59,7 @@ python3 -m export_book --using-chapter-folders --root-path . -f ./book/top-quest
 python3 -m export_book --root-path book --output-file my-book.pdf
 
 # all markdown files in one folder AND one language (en)
-python3 -m export_book --root-path book --language en --output-file book/my-book.pdf
+python3 -m export_book --root-path book --language en --output-file book/trading-indicators-handbook.pdf
 ```
 
 Some other commands for creating .pdf
