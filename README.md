@@ -27,7 +27,7 @@ docker build -t rk-latex-image .
 2. Set path to book:
 
 ```sh
-export HOST_TEMPLATE_PATH="$(pwd)" # path to template.tex
+export HOST_TEMPLATE_PATH="$PWD" # path to template.tex
 export HOST_BOOK_PATH="./example-book-markdown-folder"
 ```
 
@@ -54,6 +54,7 @@ python3 -m export_book --using-chapter-folders --root-path book --output-file bo
 
 # create pdf from specific markdown files
 python3 -m export_book --using-chapter-folders --root-path . -f ./book/top-questions/_index.ru.md
+python3 -m export_book --using-chapter-folders --root-path . -f ./book/file1.md ./book/file2.md
 
 # all markdown files in one folder
 python3 -m export_book --root-path book --output-file my-book.pdf
